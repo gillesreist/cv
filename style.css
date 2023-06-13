@@ -1,0 +1,317 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+}
+
+#header {
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#bandeau {
+    flex-basis: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#nom {
+    margin-top: 50px;
+    height: 90px;
+    width: 100%;
+    background-color:#4C9A2A;
+    border-bottom: 10px solid #051F20;
+}
+
+
+#nom h1 {
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    font-size: xx-large;
+    text-align: center;
+    padding-top: 10px;
+}
+
+#navbarre {
+    margin-top: 8px;
+    text-align: center;
+}
+
+#navbarre a {
+    color: #051F20;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    background-color: #4C9A2A;
+    transition-duration: 0.5s;
+    padding: 8px;
+    border-right: 2px solid #051F20;
+    border-bottom: 2px solid #051F20;
+    border-left: 2px solid #8FD400;
+    text-decoration:none;
+}
+
+#navbarre a:hover{
+    background-color: #8FD400;
+}
+
+
+#photodiv {
+    position: relative;
+    left : -50px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: #051F20;
+}
+
+#photo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    transition: transform 1s ease-in-out;
+}
+
+#photo:hover {
+    transform: rotate(720deg);
+}
+
+#footer {
+    background-color: #051F20;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+
+#main {
+    display: flex;
+    margin-bottom: auto;
+}
+
+
+
+#infosliste {
+    flex: 1;
+    background-color: #051F20;
+    color: white;
+    padding-top: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-bottom: 50px;
+}
+
+#infosliste a {
+    color: white;
+    text-decoration: none;
+}
+
+#infosliste a:hover {
+    color: #8fd400;
+}
+
+.infos {
+    display: flex;   
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.logos {
+    margin: 16px;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+#infosliste h3 {
+    border: solid;
+    border-color: #8FD400;
+    padding: 10px;
+    text-align: center;
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 34px;
+}
+
+#infosliste h4 {
+    margin-block-start: 25px;
+    margin-block-end: 5px;
+}
+
+#infosliste ul, ol {
+    margin-left: 36px;
+    margin-bottom: 2px;
+}
+
+#competences h4 {
+    text-align: center;
+}
+
+#corps {
+    flex: 4;
+    background-color: white;
+    padding-top: 300px;
+    margin-left: 100px;    
+    color: #051F20;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#corps h2 {
+    padding: 10px;
+    padding-left: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #8FD400;
+}
+
+/* ----------table---------- */
+
+#corps table {
+    border-collapse: collapse;
+    margin: 25px 0 25px 25px;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+#corps thead tr {
+    background-color: #051F20;
+    color: #ffffff;
+    text-align: left;
+}
+
+#corps th {
+    padding-left: 15px;
+}
+
+#corps td {
+    padding: 12px 15px;
+}
+
+#corps tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+#corps tbody tr:last-of-type {
+    border-bottom: 2px solid #051F20;
+}
+
+/* ----------table fin---------- */
+
+#hobby {
+    margin-right: 100px;
+}
+
+#hobby h1 {
+    text-align: center;
+}
+
+.iframe-container {
+    text-align: center;
+}
+
+.iframe-container iframe{
+    height:315px;
+    width:100%;
+    max-width: 560px;
+    border: none;
+}
+
+/*----------- formulaire---------------*/
+
+#hautcontact {
+    background-color: #051F20;
+    color: white;
+    padding: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+form {
+    margin: 0 auto;
+    width: 400px;
+    background-color: #c1d9b4;
+    border-bottom: 2px solid #051F20;
+  }
+  
+form div + div {
+    margin-top: 1em;
+  }
+
+.formulaire {
+    text-align: center;
+}
+
+.champsTexte {
+    padding-right: 4px;
+}
+
+.champsTexte label {
+    /* Pour être sûrs que toutes les étiquettes ont même taille et sont correctement alignées */
+    display: inline-block;
+    width: 95px;
+    text-align: right;
+  }
+
+  #contactSelection label {
+    display: block;
+    width: auto;
+    text-align: center;
+  }
+
+  .select {
+    text-align: center;
+}
+  
+ .champsTexte input, textarea {
+    /* Pour s'assurer que tous les champs texte ont la même police.
+       Par défaut, les textarea ont une police monospace */
+    font: 1em sans-serif;
+  
+    /* Pour que tous les champs texte aient la même dimension */
+    width: 295px;
+    box-sizing: border-box;
+  
+    border: 1px solid #999;
+  }
+  
+  input:focus, textarea:focus {
+    /* Pour souligner légèrement les éléments actifs */
+    border-color: #000;
+  }
+  
+  textarea {
+    /* Pour aligner les champs texte multi‑ligne avec leur étiquette */
+    vertical-align: top;
+  
+    /* Pour donner assez de place pour écrire du texte */
+    height: 5em;
+  }
+
+  .button {
+    padding-bottom: 10px;
+  }
+
+  /*----------- formulaire fin---------------*/
+
