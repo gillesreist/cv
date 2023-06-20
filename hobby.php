@@ -1,4 +1,6 @@
 <?php
+$metaTitle = "Mon Hobby";
+$metaDescription = "Ultimate Flying-Disc";
 include 'header.php';
 ?>
         <div id="corps">

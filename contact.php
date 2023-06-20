@@ -1,6 +1,8 @@
 <?php
+    $metaTitle = "Contact";
+    $metaDescription = "formulaire de contact";
     include 'header.php';
-    ?>
+?>
         <div id="main">
             <div id="corps">
                 <div class="formulaire">
