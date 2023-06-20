@@ -1,5 +1,7 @@
 <?php
-include 'header.php';
+    $metaTitle = "Mon Hobby";
+    $metaDescription = "Ultimate Flying-Disc";
+    require 'header.php';
 ?>
         <div id="corps">
             <div id="hobby">

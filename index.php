@@ -1,5 +1,7 @@
 <?php
-    include 'header.php';
+    $metaTitle = "Gilles Reist Curriculim Vitae";
+    $metaDescription = "parcours professionnel et scolaire";
+    require 'header.php';
 ?>
 
 
