@@ -14,7 +14,7 @@
             <h1>Gilles Reist</h1>
         </div>
         <div id="navbarre">
-            <a href="index.html">C.V.</a><a href="contact.html">Contact</a><a href="hobby.html">Hobby</a>
+            <a href="index.php">C.V.</a><a href="contact.php">Contact</a><a href="hobby.php">Hobby</a>
         </div>
     </div>
     <div id="photodiv">
