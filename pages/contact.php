@@ -6,7 +6,7 @@
         <div id="main">
             <div id="corps">
                 <div class="formulaire">
-                    <form action=" https://httpbin.org/post" method="post">
+                    <form action="index.php?page=contact" method="post">
                         <div id="hautcontact">
                             Me contacter
                         </div>
@@ -60,5 +60,9 @@
             </div>
         </div>
 <?php
+    $test =  filter_input(INPUT_POST, 'user_mail');
+    file_put_contents('contact/test.txt', $test);
     include 'footer.php';
-    ?>
+?>
+
+
