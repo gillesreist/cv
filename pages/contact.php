@@ -2,6 +2,7 @@
 $metaTitle = "Contact";
 $metaDescription = "formulaire de contact";
 require "header.php";
+require "pdo.php";
 
 $donnees = [];
 $nettoyage = [];
@@ -32,19 +33,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error["mailErr"] = "Veuillez renseigner une adresse email valide";
     }
 
-    if (!empty($donnees["message"] && strlen($donnees["message"])<5)) {
+    if (!empty($donnees["message"] && strlen($donnees["message"]) < 5)) {
         $error["messageErr"] = "Veuillez écrire un message d'une longueur de 5 caractères mininums.";
     }
 
-    foreach($donnees as $key => $value) {
-        $formulaire .= $key." ".$value."\r\n";
+    foreach ($donnees as $key => $value) {
+        $formulaire .= $key . " " . $value . "\r\n";
     }
 
     if (empty($error)) {
-        date_default_timezone_set("Europe/Paris");
-        file_put_contents("formulaire/contact_" . date("Y-m-d-H-i-s") . ".txt", $formulaire);
+        /*   date_default_timezone_set("Europe/Paris");
+           file_put_contents("formulaire/contact_" . date("Y-m-d-H-i-s") . ".txt", $formulaire);
+       }
+   */
+        $sql = "INSERT INTO contact (subject, name, surname, phone, mail, message, contact) VALUES (:subject, :name, :surname, :phone, :mail, :message, :contact)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute($donnees);
     }
 }
+
 ?>
 <div id="main">
     <div id="corps">
