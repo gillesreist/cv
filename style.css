@@ -239,6 +239,8 @@ body {
 
 /*----------- formulaire---------------*/
 
+
+
 #hautcontact {
     background-color: #051F20;
     color: white;
@@ -312,6 +314,12 @@ form div + div {
   .button {
     padding-bottom: 10px;
   }
+
+.error {
+    color: red;
+    font-size: 12px;
+    margin: 3px 0 0 0;
+}
 
   /*----------- formulaire fin---------------*/
 
