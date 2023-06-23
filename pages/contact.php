@@ -8,10 +8,9 @@ $nettoyage = [];
 $error = [];
 $formulaire = "";
 
-date_default_timezone_set("Europe/Berlin");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $nettoyage = array(
+    $nettoyage = [
         "subject" => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
         "name" => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
         "surname" => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
@@ -19,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         "mail" => FILTER_VALIDATE_EMAIL,
         "message" => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
         "contact" => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
-    );
+    ];
 
     $donnees = filter_input_array(INPUT_POST, $nettoyage);
 
@@ -42,6 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($error)) {
+        date_default_timezone_set("Europe/Paris");
         file_put_contents("formulaire/contact_" . date("Y-m-d-H-i-s") . ".txt", $formulaire);
     }
 }
