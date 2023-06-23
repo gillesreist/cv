@@ -1,6 +1,6 @@
 <?php $host = '127.0.0.1';
 $db   = 'cv';
-$user = 'gilles';
+$user = 'damabiah';
 $pass = '1234';
 $port = "3306";
 $charset = 'utf8mb4';
@@ -16,3 +16,4 @@ $pdo = new \PDO($dsn, $user, $pass, $options);
 } catch (\PDOException $e) {
 throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
+?>
