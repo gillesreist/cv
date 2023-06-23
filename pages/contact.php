@@ -1,65 +1,48 @@
 <?php
 $metaTitle = "Contact";
 $metaDescription = "formulaire de contact";
-require 'header.php';
+require "header.php";
 
+$donnees = [];
+$nettoyage = [];
+$error = [];
+$formulaire = "";
 
-date_default_timezone_set('Europe/Berlin');
+date_default_timezone_set("Europe/Berlin");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $donnees = [];
-    $error = [];
 
-    if (empty($_POST["user_name"])) {
-        $error["nameErr"] = "Veuillez renseigner votre nom";
-    } else {
-        $donnees['name'] = filter_input(INPUT_POST, 'user_name',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    }
-    if (empty($_POST["user_surname"])) {
-        $error["surnameErr"] = "Veuillez renseigner votre prénom";
-    } else {
-        $donnees['surname'] = filter_input(INPUT_POST, 'user_surname',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    }
-    if (empty($_POST["user_phone"])) {
-        $error["phoneErr"] = "Veuillez renseigner votre numéro";
-    } else {
-        $donnees['phone'] = filter_input(INPUT_POST, 'user_phone',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    }
-    if (empty($_POST["user_mail"])) {
-        $error["emailErr"] = "Veuillez renseigner votre email";
-    } else {
-        $donnees['email'] = filter_input(INPUT_POST, 'user_mail', FILTER_VALIDATE_EMAIL);
-        if (empty($donnees['email'])) {
-            $error["emailErr"] = "Veuillez renseigner une adresse email valide";
+    $nettoyage = array(
+        "subject" => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+        "name" => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+        "surname" => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+        "phone" => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+        "mail" => FILTER_VALIDATE_EMAIL,
+        "message" => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+        "contact" => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+    );
+
+    $donnees = filter_input_array(INPUT_POST, $nettoyage);
+
+    foreach ($donnees as $key => $value) {
+        if (empty($value)) {
+            $error[$key . "Err"] = "Veuillez renseigner le champ ci-dessus";
         }
     }
-    if (empty($_POST["subject"])) {
-        $error["subjectErr"] = "Veuillez choisir un élément";
-    } else {
-        $donnees['subject'] = filter_input(INPUT_POST, 'subject',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    }
-    if (empty($_POST["user_message"])) {
-        $error["user_messageErr"] = "Veuillez renseigner votre message";
-    } else {
-        $donnees['message'] = filter_input(INPUT_POST, 'user_message',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        if (strlen($donnees['message'])<5) {
-            $error["user_messageErr"] = "Veuillez écrire un message plus long";
-        }
-    }
-    if (empty($_POST["contact"])) {
-        $error["contactErr"] = "Veuillez choisir une des options";
-    } else {
-        $donnees['contact'] = filter_input(INPUT_POST, 'contact',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+    if (!empty($_POST["mail"]) && !$donnees["mail"]) {
+        $error["mailErr"] = "Veuillez renseigner une adresse email valide";
     }
 
+    if (!empty($donnees["message"] && strlen($donnees["message"])<5)) {
+        $error["messageErr"] = "Veuillez écrire un message d'une longueur de 5 caractères mininums.";
+    }
 
     foreach($donnees as $key => $value) {
         $formulaire .= $key." ".$value."\r\n";
     }
 
-  #  $formulaire = 'name ' . $name . "\r\n" . 'surname ' . $surname . "\r\n" . 'phone ' . $phone . "\r\n" . 'email ' . $email . "\r\n" . 'subject ' . $subject . "\r\n" . 'message ' . $message . "\r\n" . 'contact ' . $contact;
-
     if (empty($error)) {
-        file_put_contents('formulaire/contact_' . date('Y-m-d-H-i-s') . '.txt', $formulaire);
+        file_put_contents("formulaire/contact_" . date("Y-m-d-H-i-s") . ".txt", $formulaire);
     }
 }
 ?>
@@ -73,13 +56,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div id="contactSelection">
                     <label for="subject-select">Que concerne votre demande ?</label>
                     <div class="select">
-                        <select name="subject" id="subject-select" value="<?php echo $donnees['subject']; ?>">
+                        <select name="subject" id="subject-select" value="<?php echo $donnees["subject"]; ?>">
                             <option value="">--Choisissez une option--</option>
-                            <option value="infographie" <?php if ($donnees['subject'] == 'infographie') { ?>selected<?php }; ?>>Infographie</option>
-                            <option value="installation" <?php if ($donnees['subject'] == 'installation') { ?>selected<?php }; ?>>Installation artistique</option>
-                            <option value="dev" <?php if ($donnees['subject'] == 'dev') { ?>selected=<?php }; ?>>Développement</option>
-                            <option value="escape" <?php if ($donnees['subject'] == 'escape') { ?>selected<?php }; ?>>Escape Game</option>
-                            <option value="jeu" <?php if ($donnees['subject'] == 'jeu') { ?>selected<?php }; ?>>Jeu divers</option>
+                            <option value="infographie" <?php if ($donnees["subject"] == "infographie") { ?>selected<?php }; ?>>Infographie</option>
+                            <option value="installation" <?php if ($donnees["subject"] == "installation") { ?>selected<?php }; ?>>Installation artistique</option>
+                            <option value="dev" <?php if ($donnees["subject"] == "dev") { ?>selected=<?php }; ?>>Développement</option>
+                            <option value="escape" <?php if ($donnees["subject"] == "escape") { ?>selected<?php }; ?>>Escape Game</option>
+                            <option value="jeu" <?php if ($donnees["subject"] == "jeu") { ?>selected<?php }; ?>>Jeu divers</option>
                         </select>
                     </div>
                 </div>
@@ -89,35 +72,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div>
                         <label for="name">Nom :</label>
 
-                        <input type="text" id="name" name="user_name" value="<?php echo $donnees['name']; ?>">
+                        <input type="text" id="name" name="name" value="<?php echo $donnees["name"]; ?>">
                     </div>
                   <div class="error"><?php echo $error["nameErr"]; ?></div>
                     <div>
                         <label for="surname"> Prénom :</label>
-                        <input type="text" id="name" name="user_surname" value="<?php echo $donnees['surname']; ?>">
+                        <input type="text" id="name" name="surname" value="<?php echo $donnees["surname"]; ?>">
                     </div>
                     <div class="error"><?php echo $error["surnameErr"]; ?></div>
                     <div>
                         <label for="phone">Téléphone :</label>
-                        <input type="text" id="phone" name="user_phone" value="<?php echo $donnees['phone']; ?>">
+                        <input type="text" id="phone" name="phone" value="<?php echo $donnees["phone"]; ?>">
                     </div>
                     <div class="error"><?php echo $error["phoneErr"]; ?></div>
                     <div>
                         <label for="mail">e-mail&nbsp;:</label>
-                        <input type="text" id="mail" name="user_mail" value="<?php echo $donnees['email']; ?>">
+                        <input type="text" id="mail" name="mail" value="<?php echo $donnees["mail"]; ?>">
                     </div>
-                    <div class="error"><?php echo $error["emailErr"]; ?></div>
+                    <div class="error"><?php echo $error["mailErr"]; ?></div>
                     <div>
                         <label for="msg">Message :</label>
-                        <textarea id="msg" name="user_message"><?php echo $donnees['message']; ?></textarea>
+                        <textarea id="msg" name="message"><?php echo $donnees["message"]; ?></textarea>
                     </div>
-                    <div class="error"><?php echo $error["user_messageErr"]; ?></div>
+                    <div class="error"><?php echo $error["messageErr"]; ?></div>
                 </div>
                 <p>Veuillez choisir la meilleure méthode<br>pour vous contacter :</p>
                 <div>
-                    <input type="radio" id="contactChoice1" name="contact" value="email" <?php if ($donnees['contact'] == 'email') { ?>checked<?php }; ?>>
+                    <input type="radio" id="contactChoice1" name="contact" value="email" <?php if ($donnees["contact"] == "email") { ?>checked<?php }; ?>>
                     <label for="contactChoice1">Email</label>
-                    <input type="radio" id="contactChoice2" name="contact" value="telephone" <?php if ($donnees['contact'] == 'telephone') { ?>checked<?php }; ?>>
+                    <input type="radio" id="contactChoice2" name="contact" value="telephone" <?php if ($donnees["contact"] == "telephone") { ?>checked<?php }; ?>>
                     <label for="contactChoice2">Téléphone</label>
                 </div>
                 <div class="error"><?php echo $error["contactErr"]; ?></div>
@@ -129,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </div>
 <?php
-include 'footer.php';
+include "footer.php";
 ?>
 
 
