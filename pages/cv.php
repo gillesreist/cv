@@ -1,5 +1,5 @@
 <?php
-    $metaTitle = "Gilles Reist Curriculim Vitae";
+    $metaTitle = "Gilles Reist Curriculum Vitae";
     $metaDescription = "parcours professionnel et scolaire";
     include 'header.php';
 ?>

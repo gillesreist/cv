@@ -1,5 +1,4 @@
 <?php
-session_start();
 if (!isset($_SESSION['dateFirstVisit'])) {
     $_SESSION['dateFirstVisit'] = date('Y-m-d H:i-s');
 }
